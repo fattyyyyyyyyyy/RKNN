@@ -1,0 +1,123 @@
+W Detect torchvision(0.10.0). If the python program got segment fault error, try to <import tensorflow> before <import torchvision>
+D Using CPPUTILS: True
+I Start importing pytorch...
+D import clients finished
+W Pt model version is 1.6(same as you can check through <netron>), but the installed pytorch is 1.9.0. This may cause the model to fail to load.
+W Input channel 1 less then 3, please update NPU Driver to v1.3.0 or later.
+D match input audio_feature.1
+I Parse prim::Constant at 2
+I Parse prim::Constant at 3
+I Parse prim::Constant at 4
+I Parse prim::Constant at 5
+I Parse prim::Constant at 6
+I Parse prim::Constant at 7
+I Parse prim::Constant at 8
+I Parse prim::Constant at 9
+I Parse prim::Constant at 10
+I Parse prim::Constant at 11
+I Parse prim::Constant at 12
+I Parse aten::size at 15
+I Parse prim::NumToTensor at bs.1
+I Parse aten::Int at 17
+I Parse prim::ListConstruct at 18
+I Parse aten::reshape at feature.2
+D Output shape of layer reshape_at_feature.2_3_1: [[1, 398, 120]]
+I Parse prim::ListConstruct at 20
+I Parse aten::ones at 21
+I Parse aten::mul at 22
+I Parse prim::Constant at 45
+I Parse prim::Constant at 46
+I Parse prim::Constant at 47
+I Parse aten::floor_divide at 49
+I Parse aten::transpose at input.2
+D Output shape of layer transpose_at_input.2_6_2: [[1, 120, 398]]
+I Parse prim::Constant at 53
+I Parse prim::Constant at 54
+I Parse prim::Constant at 55
+I Parse prim::Constant at 56
+I Parse prim::Constant at 57
+I Parse prim::ListConstruct at 60
+I Parse prim::ListConstruct at 61
+I Parse prim::ListConstruct at 62
+I Parse prim::ListConstruct at 63
+I Parse aten::_convolution at input0.1
+D Output shape of layer conv1d_at_input0.1_7_3: [[1, 60, 512]]
+I Parse prim::Constant at 65
+I Parse prim::Constant at 66
+I Parse prim::Constant at 67
+I Parse prim::Constant at 68
+I Parse prim::Constant at 69
+I Parse prim::ListConstruct at 72
+I Parse prim::ListConstruct at 73
+I Parse prim::ListConstruct at 74
+I Parse prim::ListConstruct at 75
+I Parse aten::_convolution at feature.1
+D Output shape of layer conv1d_at_feature.1_8_4: [[1, 30, 512]]
+I Parse aten::transpose at orig_input.1
+D Output shape of layer transpose_at_orig_input.1_9_5: [[1, 512, 30]]
+I Parse prim::TupleConstruct at 78
+I Parse prim::TupleUnpack at 79_80
+I Parse prim::Constant at 83
+I Parse prim::Constant at 84
+I Parse prim::Constant at 85
+I Parse prim::Constant at 86
+I Parse prim::Constant at 87
+I Parse prim::Constant at 88
+I Parse prim::Constant at 89
+I Parse prim::Constant at 90
+I Parse prim::Constant at 91
+I Parse prim::Constant at 92
+I Parse aten::size at 101
+I Parse prim::NumToTensor at max_batch_size.2
+I Parse aten::Int at 103
+I Parse aten::Int at 104
+I Parse prim::ListConstruct at 105
+I Parse aten::zeros at hx.2
+I Parse prim::ListConstruct at 107
+I Parse aten::zeros at hx0.2
+I Parse prim::ListConstruct at 109
+I Parse prim::ListConstruct at 110
+I Parse aten::lstm at input.4_112_113
+D Output shape of layer transpose_at_input.4_112_113_13_6: [[512, 1, 30]]
+D Output shape of layer lstm_at_input.4_112_113_14_7: [[512, 1, 512], [1, 512], [1, 512]]
+D Output shape of layer reverse_at_input.4_112_113_15_8: [[512, 1, 30]]
+D Output shape of layer lstm_at_input.4_112_113_16_9: [[512, 1, 512], [1, 512], [1, 512]]
+D Output shape of layer reverse_back_at_input.4_112_113_17_10: [[512, 1, 512]]
+W Warning: Axis may need to be adjusted according to original model shape.
+D Output shape of layer concat_at_input.4_112_113_18_11: [[512, 1, 1024]]
+D Output shape of layer transpose_at_input.4_112_113_19_12: [[1, 512, 1024]]
+I Parse aten::linear at 116
+D Output shape of layer linear_at_116_14_13: [[1, 1024]]
+I Parse aten::tanh at 117
+D Output shape of layer tanh_at_117_15_14: [[1, 1024]]
+I Parse prim::Constant at 120
+I Parse prim::Constant at 121
+I Parse prim::Constant at 122
+I Parse prim::Constant at 123
+I Parse prim::Constant at 124
+I Parse prim::Constant at 125
+I Parse prim::Constant at 126
+I Parse prim::Constant at 127
+I Parse prim::Constant at 128
+I Parse prim::Constant at 129
+I Parse aten::size at 138
+I Parse prim::NumToTensor at max_batch_size.4
+I Parse aten::Int at 140
+I Parse aten::Int at 141
+I Parse prim::ListConstruct at 142
+I Parse aten::zeros at hx.4
+I Parse prim::ListConstruct at 144
+I Parse aten::zeros at hx0.4
+I Parse prim::ListConstruct at 146
+I Parse prim::ListConstruct at 147
+I Parse aten::lstm at input.6_149_150
+E Catch exception when loading pytorch model: ./asr.pt!
+E Traceback (most recent call last):
+E   File "rknn\base\RKNNlib\app\importer\import_pytorch.py", line 129, in rknn.base.RKNNlib.app.importer.import_pytorch.ImportPytorch.run
+E   File "rknn\base\RKNNlib\converter\convert_pytorch_new.py", line 3985, in rknn.base.RKNNlib.converter.convert_pytorch_new.convert_pytorch.load
+E   File "rknn\base\RKNNlib\converter\convert_pytorch_new.py", line 4156, in rknn.base.RKNNlib.converter.convert_pytorch_new.convert_pytorch.parse_nets
+E   File "rknn\base\RKNNlib\converter\convert_pytorch_new.py", line 3783, in rknn.base.RKNNlib.converter.convert_pytorch_new.PyTorchOpConverter.convert_operators
+E   File "rknn\base\RKNNlib\converter\convert_pytorch_new.py", line 1076, in rknn.base.RKNNlib.converter.convert_pytorch_new.PyTorchOpConverter.lstm
+E AssertionError: lstm input is supposed to be a 3-dim tensor, but we got [1, 1024]
+E Please feedback the detailed log file <log_feedback_to_the_rknn_toolkit_dev_team.log> to the RKNN Toolkit development team.
+E You can also check github issues: https://github.com/rockchip-linux/rknn-toolkit/issues
